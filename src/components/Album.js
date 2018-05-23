@@ -12,7 +12,9 @@ class Album extends Component {
 		this.state = {
 			album: album,
 			currentSong: album.songs[0],
-      		isPlaying: false
+			currentHover: '',
+      		isPlaying: false,
+      		isHovering: false
 		}
 
 		this.audioElement = document.createElement('audio');
@@ -36,12 +38,30 @@ class Album extends Component {
 
 	handleSongClick(song) {
 		const isSameSong = this.state.currentSong === song;
-    		if (this.state.isPlaying && isSameSong) {
-        		this.pause();
-     		} else {
-     			if (!isSameSong) { this.setSong(song); } 
-       			this.play();
-     		}
+		if (this.state.isPlaying && isSameSong) {
+    		this.pause();
+ 		} else {
+ 			if (!isSameSong) { this.setSong(song); } 
+   			this.play();
+ 		}
+	}
+
+	hoverChange(x) {
+		this.setState({ isHovering: x });
+	}
+
+	setCurrentHover(song){
+		this.setState({ currentHover: song });
+	}
+
+	handleSongHover(song) {
+		this.setCurrentHover(song);
+		this.hoverChange(true);
+	}
+
+	handleSongLeave(song) {
+		this.setCurrentHover('');
+		this.hoverChange(false);
 	}
 
 	render() {
@@ -68,8 +88,8 @@ class Album extends Component {
 		            		<th>Song Duration</th>
 		            	</tr>
 						{ this.state.album.songs.map( (song, index) =>
-							<tr className="song" key={index} onClick={() => this.handleSongClick(song)}>
-								<td>{index + 1}</td>
+							<tr className="song" key={index} onClick={() => this.handleSongClick(song)} onMouseEnter={() => this.handleSongHover(song)} onMouseLeave={() => this.handleSongLeave(song)}>
+								<td>{ this.state.currentHover === song && !this.state.isPlaying ?  <span className="ion-play"></span> : this.state.currentHover === song && this.state.currentHover === this.state.currentSong ? <span className="ion-pause"></span> : this.state.currentHover === song && this.state.currentHover !== this.state.currentSong ? <span className="ion-play"></span> : index + 1 }</td>
 								<td>{song.title}</td>
 								<td>{song.duration}</td>
 							</tr>
