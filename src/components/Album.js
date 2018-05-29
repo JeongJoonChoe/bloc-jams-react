@@ -67,7 +67,6 @@ class Album extends Component {
 	}
 
 	formatTime(time) {
-		if (typeof time !== "number" ) { return "-:--"; }
 		var minutes = Math.floor(time / 60);
 		var seconds = Math.floor(time % 60);
 
@@ -171,7 +170,7 @@ class Album extends Component {
 							<tr className="song" key={index} onClick={() => this.handleSongClick(song)} onMouseEnter={() => this.handleSongHover(song)} onMouseLeave={() => this.handleSongLeave(song)}>
 								<td>{ this.state.currentHover === song && !this.state.isPlaying ?  <span className="ion-play"></span> : this.state.currentHover === song && this.state.currentHover === this.state.currentSong ? <span className="ion-pause"></span> : this.state.currentHover === song && this.state.currentHover !== this.state.currentSong ? <span className="ion-play"></span> : index + 1 }</td>
 								<td>{song.title}</td>
-								<td>{song.duration}</td>
+								<td>{this.formatTime(song.duration)}</td>
 							</tr>
 						)}
 		           </tbody>
