@@ -9,13 +9,24 @@ import Album from './components/Album';
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <div>
         <header>
-          <nav> 
-            <Link to='/'>Landing</Link>
-            <Link to='/library'>Library</Link>
+          <nav className="navbar">
+            <div className="container-fluid">
+              <div className="container-fluid row">
+                <div className="col-8 offset-1">
+                  <Link className="nav navbar-brand" to="/">
+                    <img width="20" height="20" src="http://www.pngmart.com/files/1/Headphones-Clip-Art-PNG.png" alt="headphones"/>
+                    Bloc Jams
+                  </Link>
+                </div>
+                <div className="col">
+                  <Link className="nav navbar-text" to='/'>Landing</Link>
+                  <Link className="nav navbar-text" to='/library'>Library</Link>
+                </div>
+              </div>
+            </div>
           </nav>
-          <h1>Bloc Jams</h1>
         </header>
         <main>
           <Route exact path="/" component={Landing} />
