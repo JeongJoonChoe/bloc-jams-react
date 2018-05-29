@@ -1,0 +1,22 @@
+.img-size {
+	width: 220px;
+	height: 220px;
+	transition: transform .2s;
+}
+
+.img-size:hover {
+	transform:scale(1.25);
+}
+
+.point {
+	padding:20px;
+}
+
+.landing {
+	margin-top: 200px;
+}
+
+.test {
+	background-color: yellow;
+}
+

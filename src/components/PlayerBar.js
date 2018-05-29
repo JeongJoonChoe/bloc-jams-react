@@ -3,6 +3,7 @@ import React, { Component } from 'react';
  class PlayerBar extends Component {
    render() {
      return (
+     	<div className="container">
        <section className="player-bar">
          <section id="buttons">
            <button id="previous" onClick={this.props.handlePrevClick}>
@@ -42,6 +43,7 @@ import React, { Component } from 'react';
            <div className="icon ion-volume-high"></div>
          </section>
        </section>
+      	</div>
      );
    }
  }
