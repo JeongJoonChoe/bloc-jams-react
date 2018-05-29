@@ -173,35 +173,10 @@ class Album extends Component {
            	            handleTimeChange={(e) => this.handleTimeChange(e)}
            	            handleVolumeChange={(e) => this.handleVolumeChange(e)}
            	            formatTime={(t) => this.formatTime(t)} 
-		         	/>
-<<<<<<< HEAD
-		        	<colgroup>
-		            	<col id="song-number-column" />
-		            	<col id="song-title-column" />
-		            	<col id="song-duration-column" />
-		            </colgroup>  
-		            <tbody>
-		            	<tr>
-		            		<th>Song Number</th>
-		            		<th>Song Title</th>
-		            		<th>Song Duration</th>
-		            	</tr>
-						{ this.state.album.songs.map( (song, index) =>
-							<tr className="song" key={index} onClick={() => this.handleSongClick(song)} onMouseEnter={() => this.handleSongHover(song)} onMouseLeave={() => this.handleSongLeave(song)}>
-								<td>{ this.state.currentHover === song && !this.state.isPlaying ?  <span className="ion-play"></span> : this.state.currentHover === song && this.state.currentHover === this.state.currentSong ? <span className="ion-pause"></span> : this.state.currentHover === song && this.state.currentHover !== this.state.currentSong ? <span className="ion-play"></span> : index + 1 }</td>
-								<td>{song.title}</td>
-								<td>{this.formatTime(song.duration)}</td>
-							</tr>
-						)}
-		           </tbody>
-		        </table>		   	
-		   	</section>   
-=======
+		         	/>		   	 
 		        </div>
-		   	
 		   	</section>
 		   	</div>   
->>>>>>> checkpoint-9-styling
 	 	);
 	}
 }
