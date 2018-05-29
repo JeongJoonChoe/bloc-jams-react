@@ -1,14 +1,23 @@
- .navbar {
-  background-color: grey;
+body {
+	background-image: url("https://media.istockphoto.com/photos/soft-cloud-background-with-gradient-colorful-picture-id499455204?k=6&m=499455204&s=612x612&w=0&h=_jZ47A0k8_R0yaiwR042kzrp552ImqCpfZnVtPzWRNg=");
+	background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.navbar {
   height: 60px;
- }
+}
 
 .test {
   background-color: yellow;
 }
+h1{
+	margin-left:5px;
+}
 
 .navbar-text {
-  margin-right: 5px;
+  margin: 5px;
+  font-size: 18px;
 }
 
 .nav {

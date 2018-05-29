@@ -67,7 +67,6 @@ class Album extends Component {
 	}
 
 	formatTime(time) {
-		if (typeof time !== "number" ) { return "-:--"; }
 		var minutes = Math.floor(time / 60);
 		var seconds = Math.floor(time % 60);
 
@@ -133,16 +132,35 @@ class Album extends Component {
 
 	render() {
 		return (
-			<section className="album">
-	       		<section id="album-info">
-           			<img id="album-cover-art" src={this.state.album.albumCover} alt={this.state.album.title}/>
-	           		<div className="album-details">
-	             		<h1 id="album-title">{this.state.album.title}</h1>
-	             		<h2 className="artist">{this.state.album.artist}</h2>
-	             		<div id="release-info">{this.state.album.releaseInfo}</div>
-	           		</div>
-	         	</section> 
-		        <table id="song-list">
+			<div className="container">
+			<section className="album row landing shadow">
+	       		<section id="album-info" className="col p-5" >
+	       			<div className="container">
+		           		<div className="album-details mb-5 text-center">
+		             		<h1 id="album-title">{this.state.album.title}</h1>
+		             		<h2 className="artist">{this.state.album.artist}</h2>
+		             		<div id="release-info">{this.state.album.releaseInfo}</div>
+		           		</div>
+		           		<table id="song-list" className="container m-5">
+							<colgroup>
+				            	<col id="song-number-column" />
+				            	<col id="song-title-column" />
+				            	<col id="song-duration-column" />
+				            </colgroup>  
+				            <tbody>
+								{ this.state.album.songs.map( (song, index) =>
+									<tr className="song " key={index} onClick={() => this.handleSongClick(song)} onMouseEnter={() => this.handleSongHover(song)} onMouseLeave={() => this.handleSongLeave(song)}>
+										<td>{ this.state.currentHover === song && !this.state.isPlaying ?  <span className="ion-play"></span> : this.state.currentHover === song && this.state.currentHover === this.state.currentSong ? <span className="ion-pause"></span> : this.state.currentHover === song && this.state.currentHover !== this.state.currentSong ? <span className="ion-play"></span> : index + 1 }</td>
+										<td>{song.title}</td>
+										<td>{this.formatTime(song.duration)}</td>
+									</tr>
+								)}
+				           	</tbody>
+			        	</table>
+		        	</div>
+	         	</section>
+	         	<div className="col text-center"> 
+		        	<img className="rounded-circle mt-1 mb-3" id="album-cover-art" src={this.state.album.albumCover} alt={this.state.album.title} height="300" width="300"/>
 		         	<PlayerBar
 		           		isPlaying={this.state.isPlaying}
 		           		currentSong={this.state.currentSong}
@@ -156,27 +174,10 @@ class Album extends Component {
            	            handleVolumeChange={(e) => this.handleVolumeChange(e)}
            	            formatTime={(t) => this.formatTime(t)} 
 		         	/>
-		        	<colgroup>
-		            	<col id="song-number-column" />
-		            	<col id="song-title-column" />
-		            	<col id="song-duration-column" />
-		            </colgroup>  
-		            <tbody>
-		            	<tr>
-		            		<th>Song Number</th>
-		            		<th>Song Title</th>
-		            		<th>Song Duration</th>
-		            	</tr>
-						{ this.state.album.songs.map( (song, index) =>
-							<tr className="song" key={index} onClick={() => this.handleSongClick(song)} onMouseEnter={() => this.handleSongHover(song)} onMouseLeave={() => this.handleSongLeave(song)}>
-								<td>{ this.state.currentHover === song && !this.state.isPlaying ?  <span className="ion-play"></span> : this.state.currentHover === song && this.state.currentHover === this.state.currentSong ? <span className="ion-pause"></span> : this.state.currentHover === song && this.state.currentHover !== this.state.currentSong ? <span className="ion-play"></span> : index + 1 }</td>
-								<td>{song.title}</td>
-								<td>{song.duration}</td>
-							</tr>
-						)}
-		           </tbody>
-		        </table>		   	
-		   	</section>   
+		        </div>
+		   	
+		   	</section>
+		   	</div>   
 	 	);
 	}
 }
